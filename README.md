@@ -14,7 +14,7 @@ this project will be maintained as long the game maintain as a HTML based game. 
 It is a Windows application with a browser component in it. the application uses a class to overwatch over the window components of the game, since the game completely uses HTML. It have a automated hacking process that makes (you lazy) easy for you to overcome others.
 
 ### Wiki
-A tutorial will be ready to ready to know how to use it.
+Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool Wiki") and learn how it works.
 
 ### Issues
 Whether you have a problem, let me know! 
