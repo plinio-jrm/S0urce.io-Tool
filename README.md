@@ -1,4 +1,5 @@
 # S0urce.io Tool
+I posted the entire code i made using Visual Studio 2017 here. The project is a **Windows Application Form**. You can create and use the same source to compile your own tool if you don't trust the tool on [releases folder](https://github.com/plinio-jrm/S0urce.io-Tool/tree/master/Releases "Releases").
 
 #### Description
 Tired of typing? Here the solution! I created this Tool (Bot), so you can join and relax recking everyone! At first you'll require to input the hacking words you see in the command window. You will have to type only once. 
@@ -15,6 +16,9 @@ It is a Windows application with a browser component in it. the application uses
 
 ### Wiki
 Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool Wiki") and learn how it works.
+
+### Download Releases
+[Beta version 0.1](https://github.com/plinio-jrm/S0urce.io-Tool/blob/master/Releases/S0urce.io%20Tool%20v0.1.exe "Download Beta version 0.1")
 
 ### Issues
 Whether you have a problem, let me know! 
