@@ -10,6 +10,9 @@ Please be aware that this is a personal project. Use it on your own. If you get 
 ### Observation
 this project will be maintained as long the game maintain as a HTML based game. Whenever it change to flash, js or others, i'll stop maintaining it.
 
+### How it works
+It is a Windows application with a browser component in it. the application uses a class to overwatch over the window components of the game, since the game completely uses HTML. It have a automated hacking process that makes (you lazy) easy for you to overcome others.
+
 ### Wiki
 A tutorial will be ready to ready to know how to use it.
 
