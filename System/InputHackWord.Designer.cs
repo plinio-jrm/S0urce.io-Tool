@@ -1,4 +1,4 @@
-﻿namespace S0urce.io_Crawler.Crawler {
+﻿namespace S0urce.io_tool.Bot {
    partial class InputHackWord {
       /// <summary>
       /// Required designer variable.

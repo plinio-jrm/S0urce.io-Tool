@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S0urce.io_Crawler.Crawler {
+namespace S0urce.io_tool.Bot {
    public class DatabaseSystem {
       private const string FILE_NAME = "dbs.dat";
 

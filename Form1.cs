@@ -1,25 +1,19 @@
-﻿using S0urce.io_Crawler.Crawler;
+﻿using S0urce.io_tool.Bot;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace S0urce.io_Crawler {
+namespace S0urce.io_tool {
    public partial class frmCrawler : Form {
       #region constants
       private const string STR_S0URCE_IO = "http://s0urce.io/";
       #endregion
-      private Crawler2 crawler2;
+      private ToolBot crawler2;
 
       public frmCrawler() {
          InitializeComponent();
-         this.crawler2 = new Crawler2();
+         this.crawler2 = new ToolBot();
          this.crawler2.References.Browser = webS0urceIo;
+         this.crawler2.State.stateLabel = lblStatus;
 
          this.webS0urceIo.PreviewKeyDown += this.WebS0urceIo_PreviewKeyDown;
       }
@@ -45,6 +39,11 @@ namespace S0urce.io_Crawler {
       private void frmCrawler_Shown(object sender, EventArgs e) {
          webS0urceIo.Navigate(STR_S0URCE_IO);
          this.crawler2.Start();
+      }
+
+      private void frmCrawler_FormClosed(object sender, FormClosedEventArgs e) {
+         this.crawler2.Stop();
+         Application.Exit();
       }
    }
 }

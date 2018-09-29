@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace S0urce.io_Crawler.Crawler {
+namespace S0urce.io_tool.Bot {
    public struct GameReferences {
       public WebBrowser Browser;
       public HtmlElement WindowTool;
       public HtmlElement WindowToolProgress;
       public HtmlElement WindowToolInput;
+
+      private HtmlElement GamePage;
 
       public bool IsSet() {
          return (this.WindowToolInput != null);
@@ -43,8 +41,9 @@ namespace S0urce.io_Crawler.Crawler {
       public void SetReferences() {
          HtmlElement gamepage = this.GetGamePage();
          if (gamepage == null) return;
+         this.GamePage = gamepage;
 
-         HtmlElement windowTool = gamepage.Document.GetElementById("window-tool");
+         HtmlElement windowTool = this.GamePage.Document.GetElementById("window-tool");
          if (windowTool == null) return;
          this.WindowTool = windowTool;
 
@@ -74,6 +73,13 @@ namespace S0urce.io_Crawler.Crawler {
          this.WindowToolInput.SetAttribute("value", word);
          this.WindowToolInput.Focus();
          SendKeys.SendWait("{ENTER}");
+      }
+
+      public void RemoveAdBar() {
+         dynamic htmldoc = this.Browser.Document.DomDocument as dynamic;
+         dynamic adbar = htmldoc.getElementById("window-msg2") as dynamic;
+         if (adbar != null)
+            adbar.parentNode.removeChild(adbar);
       }
 
       private HtmlElement GetTooltip() {
