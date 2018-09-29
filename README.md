@@ -1,5 +1,5 @@
 # S0urce.io Tool
-I posted the entire code i made using Visual Studio 2017 here. The project is a **Windows Application Form**. You can create and use the same source to compile your own tool if you don't trust the tool on [releases folder](https://github.com/plinio-jrm/S0urce.io-Tool/tree/master/Releases "Releases").
+I posted the entire code i made using Visual Studio 2017 here. The project is a **Windows Application Form**. You can create and use the same source to compile your own tool if you don't trust the tool on [Releases section](https://github.com/plinio-jrm/S0urce.io-Tool/releases "Releases").
 
 Want to follow the development process, access the [MeisterTask page](https://www.meistertask.com/app/project/xXlUDrFS/s0urce-io-tool "Development process").
 
