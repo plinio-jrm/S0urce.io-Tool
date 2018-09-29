@@ -20,7 +20,7 @@ It is a Windows application with a browser component in it. the application uses
 Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool Wiki") and learn how it works.
 
 ### Download Releases
-[Beta version 0.1](https://github.com/plinio-jrm/S0urce.io-Tool/blob/master/Releases/S0urce.io%20Tool%20v0.1.exe "Download Beta version 0.1")
+**New**[Beta version 0.2](https://github.com/plinio-jrm/S0urce.io-Tool/releases/tag/v0.2-beta "Download Beta version 0.2")
 
 ### Issues
 Whether you have a problem, let me know! 
