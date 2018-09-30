@@ -1,4 +1,4 @@
-﻿using S0urce.io_tool.Bot;
+﻿using S0urce.io_tool.Tool;
 using System;
 using System.Windows.Forms;
 
@@ -13,9 +13,15 @@ namespace S0urce.io_tool {
          InitializeComponent();
          this.crawler2 = new ToolBot();
          this.crawler2.References.Browser = webS0urceIo;
-         this.crawler2.State.stateLabel = lblStatus;
+         this.SetVisualComponents();
 
          this.webS0urceIo.PreviewKeyDown += this.WebS0urceIo_PreviewKeyDown;
+      }
+
+      private void SetVisualComponents() {
+         this.crawler2.State.stateLabel = lblStatus;
+         this.crawler2.InfoBarController.DataMinerInfo.BTCoint = lblBTCoin;
+         this.crawler2.InfoBarController.DataMinerInfo.Info = lblDataMinerInfo;
       }
 
       private void WebS0urceIo_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
@@ -39,11 +45,6 @@ namespace S0urce.io_tool {
       private void frmCrawler_Shown(object sender, EventArgs e) {
          webS0urceIo.Navigate(STR_S0URCE_IO);
          this.crawler2.Start();
-      }
-
-      private void frmCrawler_FormClosed(object sender, FormClosedEventArgs e) {
-         this.crawler2.Stop();
-         Application.Exit();
       }
    }
 }

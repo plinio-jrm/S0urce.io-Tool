@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace S0urce.io_tool.Bot {
+namespace S0urce.io_tool.BotSystem {
    public class DatabaseSystem {
       private const string FILE_NAME = "dbs.dat";
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace S0urce.io_tool.Bot {
+namespace S0urce.io_tool.Tool {
    public partial class InputHackWord: Form {
       public delegate void OnOkPress(string hackWord);
       public event OnOkPress OnOk;

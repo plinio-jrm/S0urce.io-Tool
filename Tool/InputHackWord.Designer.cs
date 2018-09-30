@@ -1,4 +1,4 @@
-﻿namespace S0urce.io_tool.Bot {
+﻿namespace S0urce.io_tool.Tool {
    partial class InputHackWord {
       /// <summary>
       /// Required designer variable.

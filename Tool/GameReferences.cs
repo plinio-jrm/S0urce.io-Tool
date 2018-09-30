@@ -1,19 +1,71 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace S0urce.io_tool.Bot {
-   public struct GameReferences {
+namespace S0urce.io_tool.Tool {
+   public class GameReferences {
+      #region varaibles
       public WebBrowser Browser;
       public HtmlElement WindowTool;
       public HtmlElement WindowToolProgress;
       public HtmlElement WindowToolInput;
 
-      private HtmlElement GamePage;
+      public HtmlElement WindowMiner;
+      public HtmlElement WindowMinerBTCoin;
+      public HtmlElement WindowMinerBTCoinGain;
 
+      private HtmlElement GamePage;
+      #endregion
+      #region class methods
       public bool IsSet() {
          return (this.WindowToolInput != null);
       }
 
+      public void SetReferences() {
+         #region game page
+         HtmlElement gamepage = this.GetGamePage();
+         if (gamepage == null) return;
+         this.GamePage = gamepage;
+         #endregion
+         #region window miner
+         HtmlElement windowMiner = this.GamePage.Document.GetElementById("window-miner");
+         if (windowMiner == null) return;
+         this.WindowMiner = windowMiner;
+
+         HtmlElement windowMinerBTCoin = this.WindowMiner.Document.GetElementById("window-my-coinamount");
+         if (windowMinerBTCoin == null) return;
+         this.WindowMinerBTCoin = windowMinerBTCoin;
+
+         HtmlElement windowMinerBTCoinGain = this.WindowMiner.Document.GetElementById("window-my-gainamount");
+         if (windowMinerBTCoinGain == null) return;
+         this.WindowMinerBTCoinGain = windowMinerBTCoinGain;
+         #endregion
+         #region window tool
+         HtmlElement windowTool = this.GamePage.Document.GetElementById("window-tool");
+         if (windowTool == null) return;
+         this.WindowTool = windowTool;
+
+         HtmlElement windowTool_Progress = this.WindowTool.Document.GetElementById("progressbar-firewall-amount");
+         if (windowTool_Progress == null) return;
+         this.WindowToolProgress = windowTool_Progress;
+
+         HtmlElement windowTool_input = this.WindowTool.Document.GetElementById("tool-type-word");
+         if (windowTool_input == null) return;
+         this.WindowToolInput = windowTool_input;
+         #endregion
+      }
+
+      private HtmlElement GetGamePage() {
+         return this.Browser.Document.GetElementById("game-page");
+      }
+
+      public void RemoveAdBar() {
+         dynamic htmldoc = this.Browser.Document.DomDocument as dynamic;
+         dynamic adbar = htmldoc.getElementById("window-msg2") as dynamic;
+         if (adbar != null)
+            adbar.parentNode.removeChild(adbar);
+      }
+      #endregion
+      #region Window tool
       public bool WindowToolDisplayed() {
          return (!this.WindowTool.Style.Contains("display"));
       }
@@ -38,24 +90,6 @@ namespace S0urce.io_tool.Bot {
          }
       }
 
-      public void SetReferences() {
-         HtmlElement gamepage = this.GetGamePage();
-         if (gamepage == null) return;
-         this.GamePage = gamepage;
-
-         HtmlElement windowTool = this.GamePage.Document.GetElementById("window-tool");
-         if (windowTool == null) return;
-         this.WindowTool = windowTool;
-
-         HtmlElement windowTool_Progress = this.WindowTool.Document.GetElementById("progressbar-firewall-amount");
-         if (windowTool_Progress == null) return;
-         this.WindowToolProgress = windowTool_Progress;
-
-         HtmlElement windowTool_input = this.WindowTool.Document.GetElementById("tool-type-word");
-         if (windowTool_input == null) return;
-         this.WindowToolInput = windowTool_input;
-      }
-
       public int GetHackingProgress() {
          string style = this.WindowToolProgress.Style;
          if (style.Equals(string.Empty))
@@ -75,19 +109,28 @@ namespace S0urce.io_tool.Bot {
          SendKeys.SendWait("{ENTER}");
       }
 
-      public void RemoveAdBar() {
-         dynamic htmldoc = this.Browser.Document.DomDocument as dynamic;
-         dynamic adbar = htmldoc.getElementById("window-msg2") as dynamic;
-         if (adbar != null)
-            adbar.parentNode.removeChild(adbar);
-      }
-
       private HtmlElement GetTooltip() {
          return this.WindowTool.Document.GetElementById("tool-type");
       }
-
-      private HtmlElement GetGamePage() {
-         return this.Browser.Document.GetElementById("game-page");
+      #endregion
+      #region Window miner
+      public float GetBTCoin() {
+         string sBTCoin = this.WindowMinerBTCoin.InnerText;
+         try {
+            return float.Parse(sBTCoin.Replace('.', ','));
+         } catch (Exception e) {
+            return -1;
+         }
       }
+
+      public float GetBTCoinGain() {
+         string sBTCoin = this.WindowMinerBTCoinGain.InnerText;
+         try {
+            return float.Parse(sBTCoin.Replace('.', ','));
+         } catch (Exception e) {
+            return -1;
+         }
+      }
+      #endregion
    }
 }

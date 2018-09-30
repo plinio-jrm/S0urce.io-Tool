@@ -1,7 +1,9 @@
-﻿using System;
+﻿using S0urce.io_tool.Tool;
+using System;
 using System.Windows.Forms;
 
-namespace S0urce.io_tool.Bot {
+namespace S0urce.io_tool.BotSystem {
+   public delegate void stateChangeEvent(ToolBot_State newState);
    public class StateSystem {
       #region variables
       public Label stateLabel;
@@ -11,6 +13,9 @@ namespace S0urce.io_tool.Bot {
       #region methods
       public void SetState(ToolBot_State newState) {
          this.BotState = newState;
+         if (this.stateLabel == null)
+            return;
+
          this.stateLabel.Invoke(new Action(
             () => {
                this.ProcessState(this.BotState);
