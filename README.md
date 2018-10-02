@@ -1,4 +1,4 @@
-# S0urce.io Tool v0.3 beta
+# S0urce.io Tool v0.4 beta
 > I posted the entire code i made using Visual Studio 2017 here. The project is a **Windows Application Form**. You can create and use the same source to compile your own tool if you don't trust the tool on [Releases section](https://github.com/plinio-jrm/S0urce.io-Tool/releases "Releases").
 
 > Follow the development process to know whats comes on the next version. Access the [MeisterTask page](https://www.meistertask.com/app/project/xXlUDrFS/s0urce-io-tool "Development process").
@@ -20,13 +20,15 @@ It is a Windows application with a browser component in it. the application uses
 Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool Wiki") and learn how it works.
 
 ### Download Releases
-**New** [Beta version 0.3](https://github.com/plinio-jrm/S0urce.io-Tool/releases/tag/v0.3-beta "Download Beta version 0.3")
+**New** [Beta version 0.4](https://github.com/plinio-jrm/S0urce.io-Tool/releases/tag/v0.4-beta "Download Beta version 0.4")
 
-### What's new
-* New Info Sidebar
-* New sub system to overwatch your income
-* Reorganized code for the hacking system.
-* Removed bug that status on top bar didn't change after hacked someone.
+### What's new in version 0.4
+* The **My Computer** window is now automatic if you want it. It will auto regen when **Charge** have 5 less than **Max Charge**. Also it will upgrade automatically until you fully upgraded. First the **difficulty**, then the **Max Charge** and the last **Regen**. Regen is the last, because of it's inefficiency. It occur every 2 minuts.
+* Title version bug fixed
+* Now the firewall port information is on the sidebar.
+* Maximaze shortcut (hotkey). F11
+* For the porpuse of pattern **Single Responsability Principle**, the Sub System have been refactored and became easier to read and to understand.
+* Now the Systems will only execute after login page.
 
 ### Issues
 Whether you have a problem, let me know! 
