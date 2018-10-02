@@ -19,6 +19,9 @@ It is a Windows application with a browser component in it. the application uses
 ### Wiki
 Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool Wiki") and learn how it works.
 
+### Image
+![Preview](https://github.com/plinio-jrm/S0urce.io-Tool/blob/master/Images/Version%200.4-beta.JPG)
+
 ### Download Releases
 **New** [Beta version 0.4](https://github.com/plinio-jrm/S0urce.io-Tool/releases/tag/v0.4-beta "Download Beta version 0.4")
 
