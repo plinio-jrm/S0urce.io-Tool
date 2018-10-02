@@ -1,7 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace S0urce.io_tool.BotSystem {
-   public delegate void OverwatchMethodCall();
+   public delegate bool OverwatchMethodCall();
 
    public class OverwatchSystem {
       #region constants
@@ -13,11 +14,13 @@ namespace S0urce.io_tool.BotSystem {
       public event OverwatchMethodCall OnMainOverwatch;
       public event OverwatchMethodCall OnHacking;
       public event OverwatchMethodCall OnDataMiner;
+      public event OverwatchMethodCall OnMyComputer;
       #endregion
       #region variables
       private Thread mainThread;
       private Thread hackingThread;
       private Thread dataMinerThread;
+      private Thread mycomputerThread;
 
       private int hackingDelayTime;
       #endregion
@@ -31,16 +34,19 @@ namespace S0urce.io_tool.BotSystem {
          this.mainThread = new Thread(new ThreadStart(this.MainThreadMethod));
          this.hackingThread = new Thread(new ThreadStart(this.HackingThreadMethod));
          this.dataMinerThread = new Thread(new ThreadStart(this.DataMinerMethod));
+         this.mycomputerThread = new Thread(new ThreadStart(this.MyComputerMethod));
 
          this.mainThread.Start();
          this.hackingThread.Start();
          this.dataMinerThread.Start();
+         this.mycomputerThread.Start();
       }
 
       public void Stop() {
          this.mainThread.Abort();
          this.hackingThread.Abort();
          this.dataMinerThread.Abort();
+         this.mycomputerThread.Abort();
       }
 
       public void IncreasyDelay() {
@@ -73,6 +79,14 @@ namespace S0urce.io_tool.BotSystem {
          while (true) {
             if (this.OnDataMiner != null)
                this.OnDataMiner();
+            Thread.Sleep(DEFAULT_DELAY);
+         }
+      }
+
+      private void MyComputerMethod() {
+         while (true) {
+            if (this.OnMyComputer != null)
+               this.OnMyComputer();
             Thread.Sleep(DEFAULT_DELAY);
          }
       }

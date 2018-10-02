@@ -1,12 +1,14 @@
-﻿using S0urce.io_tool.Tool;
+﻿using S0urce.io_tool.Harvesters;
+using S0urce.io_tool.Tool;
 using System.Collections.Generic;
 
 namespace S0urce.io_tool.BotSystem {
-   public class HackingSystem: DefaultSystem {
+   public class HackingSystem: BaseSystem {
       #region events
       public event stateChangeEvent OnStateChange;
       #endregion
       #region variables
+      private WindowToolHarvester Harvester;
       private string wordHack;
       private int hackingProgress;
       private int progressHaltCount;
@@ -16,6 +18,11 @@ namespace S0urce.io_tool.BotSystem {
 
       public HackingSystem() {
          this.dictionaryOfWords = new Dictionary<string, string>();
+         this.Harvester = new WindowToolHarvester();
+      }
+
+      public override void Setup() {
+         this.Harvester.SetReference(this.References);
       }
 
       #region methods
@@ -38,23 +45,23 @@ namespace S0urce.io_tool.BotSystem {
          this.progressHaltCountStrikes = 0;
       }
 
-      public override void Process() {
-         if (!this.References.IsSet())
-            return;
+      public override bool Process() {
+         if (!base.Process())
+            return false;
 
          if (!this.IsHackingSomeone()) {
             this.OnStateChange(ToolBot_State.Idle);
-            return;
+            return false;
          }
 
-         string wordID = this.References.GetToolTipID();
+         string wordID = this.Harvester.GetToolTipID();
          if (wordID.Trim().Equals("")) {
             this.OnStateChange(ToolBot_State.Idle);
-            return;
+            return false;
          }
 
          this.OnStateChange(ToolBot_State.Hacking);
-         int hacking_Progress = this.References.GetHackingProgress();
+         int hacking_Progress = this.Harvester.GetHackingProgress();
 
          if (!this.dictionaryOfWords.ContainsKey(wordID)) {
             this.OnStateChange(ToolBot_State.HackingNewWord);
@@ -64,12 +71,12 @@ namespace S0urce.io_tool.BotSystem {
                this.dictionaryOfWords.Add(wordID, this.wordHack);
                this.OnStateChange(ToolBot_State.Hacking);
             } else
-               return;
+               return false;
          } else {
             if (hacking_Progress == this.hackingProgress) {
                ++this.progressHaltCount;
                if (this.progressHaltCount < 2) {
-                  return;
+                  return false;
                } else {
                   this.progressHaltCount = 0;
                   ++this.progressHaltCountStrikes;
@@ -78,7 +85,7 @@ namespace S0urce.io_tool.BotSystem {
                   if (this.progressHaltCountStrikes >= 2) {
                      this.progressHaltCountStrikes = 0;
                      this.dictionaryOfWords.Remove(wordID);
-                     return;
+                     return false;
                   }
                }
             } else {
@@ -89,9 +96,10 @@ namespace S0urce.io_tool.BotSystem {
             this.wordHack = this.dictionaryOfWords[wordID];
          }
 
-         this.References.sendHackingWord(this.wordHack);
+         this.Harvester.sendHackingWord(this.wordHack);
          this.wordHack = string.Empty;
          this.hackingProgress = hacking_Progress;
+         return true;
       }
 
       private void OnNewWordInput(string word) {
@@ -99,8 +107,8 @@ namespace S0urce.io_tool.BotSystem {
       }
 
       private bool IsHackingSomeone() {
-         if (this.References.WindowToolDisplayed()) {
-            return (this.References.WindowToolTypingHintDisplayed());
+         if (this.Harvester.WindowToolDisplayed()) {
+            return (this.Harvester.WindowToolTypingHintDisplayed());
          }
 
          return false;
