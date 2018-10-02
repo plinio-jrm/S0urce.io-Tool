@@ -4,7 +4,7 @@
 > Follow the development process to know whats comes on the next version. Access the [MeisterTask page](https://www.meistertask.com/app/project/xXlUDrFS/s0urce-io-tool "Development process").
 
 #### Description
-Tired of typing? Here the solution! I created this Tool (Bot), so you can join and relax recking everyone! At first you'll require to input the hacking words you see in the command window. You will have to type only once. 
+Tired of typing? Here the solution! I created this Tool (Bot), so you can join and relax recking everyone! At first you'll require to input the hacking words you see in the command window. You will have to type each word only once. 
 ##### Don't worry: If you type it wrong, the tool will let it strike twice before asking you to type the word again.
 
 ### Warning
