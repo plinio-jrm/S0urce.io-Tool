@@ -1,5 +1,5 @@
 ﻿namespace S0urce.io_tool {
-   partial class frmCrawler {
+   partial class frmToolBot {
       /// <summary>
       /// Required designer variable.
       /// </summary>
@@ -41,9 +41,11 @@
          this.lblPortADifficulty = new System.Windows.Forms.Label();
          this.lblPortARegen = new System.Windows.Forms.Label();
          this.label6 = new System.Windows.Forms.Label();
-         this.chbAutoCharge = new System.Windows.Forms.CheckBox();
          this.chbAutoFirewall = new System.Windows.Forms.CheckBox();
+         this.chbAutoCharge = new System.Windows.Forms.CheckBox();
          this.label4 = new System.Windows.Forms.Label();
+         this.txtHackingMessage = new System.Windows.Forms.TextBox();
+         this.chbHackingMessage = new System.Windows.Forms.CheckBox();
          this.lblDataMinerInfo = new System.Windows.Forms.Label();
          this.lblBTCoin = new System.Windows.Forms.Label();
          this.label3 = new System.Windows.Forms.Label();
@@ -92,9 +94,11 @@
          this.panel1.Controls.Add(this.panel5);
          this.panel1.Controls.Add(this.panel4);
          this.panel1.Controls.Add(this.panel3);
-         this.panel1.Controls.Add(this.chbAutoCharge);
          this.panel1.Controls.Add(this.chbAutoFirewall);
+         this.panel1.Controls.Add(this.chbAutoCharge);
          this.panel1.Controls.Add(this.label4);
+         this.panel1.Controls.Add(this.txtHackingMessage);
+         this.panel1.Controls.Add(this.chbHackingMessage);
          this.panel1.Controls.Add(this.lblDataMinerInfo);
          this.panel1.Controls.Add(this.lblBTCoin);
          this.panel1.Controls.Add(this.label3);
@@ -118,7 +122,7 @@
          this.panel5.Controls.Add(this.label10);
          this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
          this.panel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-         this.panel5.Location = new System.Drawing.Point(5, 243);
+         this.panel5.Location = new System.Drawing.Point(5, 280);
          this.panel5.Name = "panel5";
          this.panel5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
          this.panel5.Size = new System.Drawing.Size(144, 19);
@@ -179,7 +183,7 @@
          this.panel4.Controls.Add(this.label9);
          this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
          this.panel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-         this.panel4.Location = new System.Drawing.Point(5, 224);
+         this.panel4.Location = new System.Drawing.Point(5, 261);
          this.panel4.Name = "panel4";
          this.panel4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
          this.panel4.Size = new System.Drawing.Size(144, 19);
@@ -240,7 +244,7 @@
          this.panel3.Controls.Add(this.label6);
          this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
          this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-         this.panel3.Location = new System.Drawing.Point(5, 205);
+         this.panel3.Location = new System.Drawing.Point(5, 242);
          this.panel3.Name = "panel3";
          this.panel3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
          this.panel3.Size = new System.Drawing.Size(144, 19);
@@ -293,28 +297,13 @@
          this.label6.Text = "Port A";
          this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
          // 
-         // chbAutoCharge
-         // 
-         this.chbAutoCharge.AutoSize = true;
-         this.chbAutoCharge.Checked = true;
-         this.chbAutoCharge.CheckState = System.Windows.Forms.CheckState.Checked;
-         this.chbAutoCharge.Dock = System.Windows.Forms.DockStyle.Top;
-         this.chbAutoCharge.Location = new System.Drawing.Point(5, 188);
-         this.chbAutoCharge.Name = "chbAutoCharge";
-         this.chbAutoCharge.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-         this.chbAutoCharge.Size = new System.Drawing.Size(144, 17);
-         this.chbAutoCharge.TabIndex = 10;
-         this.chbAutoCharge.Text = "Auto charge";
-         this.chbAutoCharge.UseVisualStyleBackColor = true;
-         this.chbAutoCharge.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-         // 
          // chbAutoFirewall
          // 
          this.chbAutoFirewall.AutoSize = true;
          this.chbAutoFirewall.Checked = true;
          this.chbAutoFirewall.CheckState = System.Windows.Forms.CheckState.Checked;
          this.chbAutoFirewall.Dock = System.Windows.Forms.DockStyle.Top;
-         this.chbAutoFirewall.Location = new System.Drawing.Point(5, 171);
+         this.chbAutoFirewall.Location = new System.Drawing.Point(5, 225);
          this.chbAutoFirewall.Name = "chbAutoFirewall";
          this.chbAutoFirewall.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
          this.chbAutoFirewall.Size = new System.Drawing.Size(144, 17);
@@ -323,18 +312,62 @@
          this.chbAutoFirewall.UseVisualStyleBackColor = true;
          this.chbAutoFirewall.CheckedChanged += new System.EventHandler(this.chbAutoFirewall_CheckedChanged);
          // 
+         // chbAutoCharge
+         // 
+         this.chbAutoCharge.AutoSize = true;
+         this.chbAutoCharge.Checked = true;
+         this.chbAutoCharge.CheckState = System.Windows.Forms.CheckState.Checked;
+         this.chbAutoCharge.Dock = System.Windows.Forms.DockStyle.Top;
+         this.chbAutoCharge.Location = new System.Drawing.Point(5, 208);
+         this.chbAutoCharge.Name = "chbAutoCharge";
+         this.chbAutoCharge.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+         this.chbAutoCharge.Size = new System.Drawing.Size(144, 17);
+         this.chbAutoCharge.TabIndex = 10;
+         this.chbAutoCharge.Text = "Auto charge";
+         this.chbAutoCharge.UseVisualStyleBackColor = true;
+         this.chbAutoCharge.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+         // 
          // label4
          // 
          this.label4.Dock = System.Windows.Forms.DockStyle.Top;
          this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
          this.label4.ForeColor = System.Drawing.Color.Bisque;
-         this.label4.Location = new System.Drawing.Point(5, 151);
+         this.label4.Location = new System.Drawing.Point(5, 188);
          this.label4.Margin = new System.Windows.Forms.Padding(0);
          this.label4.Name = "label4";
          this.label4.Size = new System.Drawing.Size(144, 20);
          this.label4.TabIndex = 7;
          this.label4.Text = "My computer";
          this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+         // 
+         // txtHackingMessage
+         // 
+         this.txtHackingMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+         this.txtHackingMessage.Dock = System.Windows.Forms.DockStyle.Top;
+         this.txtHackingMessage.Enabled = false;
+         this.txtHackingMessage.ForeColor = System.Drawing.Color.White;
+         this.txtHackingMessage.Location = new System.Drawing.Point(5, 168);
+         this.txtHackingMessage.MaxLength = 40;
+         this.txtHackingMessage.Name = "txtHackingMessage";
+         this.txtHackingMessage.Size = new System.Drawing.Size(144, 20);
+         this.txtHackingMessage.TabIndex = 16;
+         this.txtHackingMessage.Text = "Free BOTv0.4 - Google: \"S0urce.io-Tool\"";
+         this.txtHackingMessage.TextChanged += new System.EventHandler(this.txtHackingMessage_TextChanged);
+         // 
+         // chbHackingMessage
+         // 
+         this.chbHackingMessage.AutoSize = true;
+         this.chbHackingMessage.Checked = true;
+         this.chbHackingMessage.CheckState = System.Windows.Forms.CheckState.Checked;
+         this.chbHackingMessage.Dock = System.Windows.Forms.DockStyle.Top;
+         this.chbHackingMessage.ForeColor = System.Drawing.Color.LightCoral;
+         this.chbHackingMessage.Location = new System.Drawing.Point(5, 151);
+         this.chbHackingMessage.Name = "chbHackingMessage";
+         this.chbHackingMessage.Size = new System.Drawing.Size(144, 17);
+         this.chbHackingMessage.TabIndex = 17;
+         this.chbHackingMessage.Text = "Hacking Message";
+         this.chbHackingMessage.UseVisualStyleBackColor = true;
+         this.chbHackingMessage.CheckedChanged += new System.EventHandler(this.chbHackingMessage_CheckedChanged);
          // 
          // lblDataMinerInfo
          // 
@@ -425,7 +458,7 @@
          this.webS0urceIo.Size = new System.Drawing.Size(1013, 528);
          this.webS0urceIo.TabIndex = 1;
          // 
-         // frmCrawler
+         // frmToolBot
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -437,9 +470,9 @@
          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
          this.MaximizeBox = false;
          this.MinimizeBox = false;
-         this.Name = "frmCrawler";
+         this.Name = "frmToolBot";
          this.ShowIcon = false;
-         this.Text = "S0urce.io Tool - Bot - Version 0.4";
+         this.Text = "S0urce.io Tool - Bot - Version 0.5";
          this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
          this.Shown += new System.EventHandler(this.frmCrawler_Shown);
          this.pan.ResumeLayout(false);
@@ -487,6 +520,8 @@
       private System.Windows.Forms.Label lblPortARegen;
       private System.Windows.Forms.Label label6;
       private System.Windows.Forms.CheckBox chbAutoCharge;
+      private System.Windows.Forms.TextBox txtHackingMessage;
+      private System.Windows.Forms.CheckBox chbHackingMessage;
    }
 }
 

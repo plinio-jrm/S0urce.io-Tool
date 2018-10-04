@@ -108,6 +108,29 @@ namespace S0urce.io_tool.Harvesters {
          }
       }
 
+      public float GetCost(FirewallPortButtons option) {
+         string sCost = string.Empty;
+         switch (option) {
+            case FirewallPortButtons.Charge:
+               sCost = this.References.WindowComputerRef.Shop.ChargeCost.InnerText;
+               break;
+            case FirewallPortButtons.MaxCharge:
+               sCost = this.References.WindowComputerRef.Shop.MaxChargeCost.InnerText;
+               break;
+            case FirewallPortButtons.Difficulty:
+               sCost = this.References.WindowComputerRef.Shop.DifficultyCost.InnerText;
+               break;
+            case FirewallPortButtons.Regen:
+               sCost = this.References.WindowComputerRef.Shop.RegenCost.InnerText;
+               break;
+         }
+         try {
+            return float.Parse(sCost.Replace('.', ','));
+         } catch {
+            return -1;
+         }
+      }
+
       private int GetDifficulty() {
          HtmlElement difficulty = this.References.WindowComputerRef.WindowComputer.Document.GetElementById("shop-strength");
          string difficultyAmount = difficulty.InnerText;

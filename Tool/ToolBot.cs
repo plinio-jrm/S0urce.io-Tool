@@ -13,6 +13,7 @@ namespace S0urce.io_tool.Tool {
       private HackingSystem HackingSystem;
       private DataMinerSystem DataMinerSystem;
       private MyComputerSystem MyComputerSystem;
+      private BlackMarketSystem BlackMarketSystem;
       private bool saveRequested = false;
       #endregion
       #region methods
@@ -36,12 +37,19 @@ namespace S0urce.io_tool.Tool {
          this.MyComputerSystem.OnPortBGetInfo += this.InfoBarController.SetMyComputerPortB;
          this.MyComputerSystem.OnPortCGetInfo += this.InfoBarController.SetMyComputerPortC;
 
+         this.BlackMarketSystem = new BlackMarketSystem();
+         this.BlackMarketSystem.SetReferences(this.References);
+         this.BlackMarketSystem.Setup();
+
          this.DataMinerSystem = new DataMinerSystem();
          this.DataMinerSystem.SetReferences(this.References);
          this.DataMinerSystem.Setup();
          this.DataMinerSystem.OnBTCoinChange += this.InfoBarController.SetBTCoin;
          this.DataMinerSystem.OnBTCoinChange += this.MyComputerSystem.SetBTCoin;
+         this.DataMinerSystem.OnBTCoinChange += this.BlackMarketSystem.SetBTCoin;
          this.DataMinerSystem.OnBTCoinGainChange += this.InfoBarController.SetBTCoinGain;
+         this.DataMinerSystem.OnBTCoinGainChange += this.MyComputerSystem.SetBTCoinGain;
+         this.DataMinerSystem.OnBTCoinGainChange += this.BlackMarketSystem.SetBTCoinGain;
       }
 
       public void Start() {
@@ -51,6 +59,7 @@ namespace S0urce.io_tool.Tool {
          this.OverwatchSystem.OnHacking += this.HackingSystem.Process;
          this.OverwatchSystem.OnDataMiner += this.DataMinerSystem.Process;
          this.OverwatchSystem.OnMyComputer += this.MyComputerSystem.Process;
+         this.OverwatchSystem.OnBlackMarket += this.BlackMarketSystem.Process;
          this.OverwatchSystem.Start();
 
          this.State.SetState(ToolBot_State.Initializing);
@@ -80,6 +89,14 @@ namespace S0urce.io_tool.Tool {
       public void SetAutoUpgrade(bool value) {
          this.MyComputerSystem.Auto_Upgrade = value;
       }
+
+      public void SetHackingMessageActive(bool enable) {
+         this.HackingSystem.SetHackingMessageActive(enable);
+      }
+
+      public void SetHackingMessage(string message) {
+         this.HackingSystem.SetHackingMessage(message);
+      }
       #endregion
       #region private methods
       private bool OverwatchPage() {
@@ -90,11 +107,14 @@ namespace S0urce.io_tool.Tool {
 
          try {
             if (this.References.Browser != null) {
-               this.References.Browser.Invoke(new Action(
-                  () => {
-                     this.ProcessPage();
-                  }
-               ));
+               if (this.References.Browser.InvokeRequired) {
+                  this.References.Browser.Invoke(new Action(
+                     () => {
+                        this.ProcessPage();
+                     }
+                  ));
+               } else
+                  this.ProcessPage();
             }
          } catch (Exception e) { }
 
@@ -106,11 +126,17 @@ namespace S0urce.io_tool.Tool {
             return;
 
          if (!this.References.IsSet()) {
+            if (this.References.Browser.StatusText.Equals("Aguardando http://s0urce.io/..."))
+               return;
+
             this.State.SetState(ToolBot_State.Idle);
             this.HackingSystem.Set();
             this.References.LoadReferences();
             this.References.RemoveAdBar();
          }
+
+         if (this.References.AdBarExist())
+            this.References.RemoveAdBar();
       }
       #endregion
       #endregion

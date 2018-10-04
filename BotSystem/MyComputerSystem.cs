@@ -1,5 +1,6 @@
 ﻿using S0urce.io_tool.BotControllers;
 using S0urce.io_tool.Harvesters;
+using System;
 using System.Threading;
 
 namespace S0urce.io_tool.BotSystem {
@@ -13,7 +14,10 @@ namespace S0urce.io_tool.BotSystem {
    public class MyComputerSystem: BaseSystem {
       #region constants
       private const string DEFAULT_QUOTE = "github.com/plinio-jrm/S0urce.io-Tool";
-      private const int GETINFO_DELAY = 200;
+      private const int GETINFO_DELAY = 300;
+      private const int AFTER_PROCESS_DELAY = 50;
+      private const int RECHARGE_BTCOIN_MULT = 20;
+      private const int MIN_HACK_BTCOIN = 5;
       #endregion
       #region events
       public event FirewallPortGetEvent OnPortAGetInfo;
@@ -26,6 +30,7 @@ namespace S0urce.io_tool.BotSystem {
 
       private bool updateQuote;
       private float BTCoin;
+      private float BTCoinGain;
       private WindowMyComputerHarvester Harvester;
 
       private FirewallPortInfo portAInfo;
@@ -54,8 +59,11 @@ namespace S0urce.io_tool.BotSystem {
          }
 
          this.ProcessPortAInfo();
+         Thread.Sleep(AFTER_PROCESS_DELAY);
          this.ProcessPortBInfo();
+         Thread.Sleep(AFTER_PROCESS_DELAY);
          this.ProcessPortCInfo();
+         Thread.Sleep(AFTER_PROCESS_DELAY);
 
          return true;
       }
@@ -90,12 +98,33 @@ namespace S0urce.io_tool.BotSystem {
          if (port == MyComputerPorts.PortC)
             priority = portCInfo.GetPriority();
 
-         if (priority == FirewallPortButtons.Difficulty)
+         if (priority == FirewallPortButtons.Difficulty && this.CanUpgrade(FirewallPortButtons.Difficulty))
             this.Harvester.RaiseDifficulty();
-         if (priority == FirewallPortButtons.Regen)
+         if (priority == FirewallPortButtons.Regen && this.CanUpgrade(FirewallPortButtons.Regen))
             this.Harvester.RaiseRegen();
-         if (priority == FirewallPortButtons.MaxCharge)
+         if (priority == FirewallPortButtons.MaxCharge && this.CanUpgrade(FirewallPortButtons.MaxCharge))
             this.Harvester.RaiseMaxCharge();
+      }
+
+      private bool CanUpgrade(FirewallPortButtons option) {
+         float rechargeBTCoinNeed = (this.BTCoinGain * RECHARGE_BTCOIN_MULT);
+         float optionCost = 0;
+         switch (option) {
+            case FirewallPortButtons.Charge:
+               optionCost = this.Harvester.GetCost(FirewallPortButtons.Charge);
+               break;
+            case FirewallPortButtons.MaxCharge:
+               optionCost = this.Harvester.GetCost(FirewallPortButtons.MaxCharge);
+               break;
+            case FirewallPortButtons.Difficulty:
+               optionCost = this.Harvester.GetCost(FirewallPortButtons.Difficulty);
+               break;
+            case FirewallPortButtons.Regen:
+               optionCost = this.Harvester.GetCost(FirewallPortButtons.Regen);
+               break;
+         }
+
+         return ((this.BTCoin - rechargeBTCoinNeed - optionCost) > (this.BTCoinGain * MIN_HACK_BTCOIN));
       }
 
       private void ProcessPortAInfo() {
@@ -142,6 +171,10 @@ namespace S0urce.io_tool.BotSystem {
 
       public void SetBTCoin(float amount) {
          this.BTCoin = amount;
+      }
+
+      public void SetBTCoinGain(float amount) {
+         this.BTCoinGain = amount;
       }
       #endregion
    }

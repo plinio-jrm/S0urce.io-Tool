@@ -5,6 +5,7 @@
       Initializing,
       Idle,
       Hacking,
-      HackingNewWord
+      HackingNewWord,
+      HackingSucess
    }
 }

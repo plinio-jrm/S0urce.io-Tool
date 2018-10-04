@@ -33,13 +33,18 @@ namespace S0urce.io_tool.BotSystem {
                stateText = "Bot initializing";
                break;
             case ToolBot_State.Idle:
-               stateText = "System ready! Waitting for port to hack";
+               stateText = "Systems ready! Waitting for port to hack";
                break;
             case ToolBot_State.Hacking:
-               stateText = "hacking in process";
+               stateText = "Hacking in process";
                break;
             case ToolBot_State.HackingNewWord:
-               stateText = "hacking in process - New word require identification";
+               stateText = "Hacking in process - New word require identification";
+               break;
+            case ToolBot_State.Error:
+               break;
+            case ToolBot_State.HackingSucess:
+               stateText = "Hacking sucessful!";
                break;
             default:
                break;

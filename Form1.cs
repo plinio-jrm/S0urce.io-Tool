@@ -3,17 +3,18 @@ using System;
 using System.Windows.Forms;
 
 namespace S0urce.io_tool {
-   public partial class frmCrawler : Form {
+   public partial class frmToolBot : Form {
       #region constants
       private const string STR_S0URCE_IO = "http://s0urce.io/";
       #endregion
       private ToolBot toolBot;
 
-      public frmCrawler() {
+      public frmToolBot() {
          InitializeComponent();
          this.toolBot = new ToolBot();
          this.toolBot.References.Browser = webS0urceIo;
          this.SetVisualComponents();
+         this.txtHackingMessage_TextChanged(txtHackingMessage, null);
 
          this.webS0urceIo.PreviewKeyDown += this.WebS0urceIo_PreviewKeyDown;
       }
@@ -69,6 +70,16 @@ namespace S0urce.io_tool {
 
       private void chbAutoFirewall_CheckedChanged(object sender, EventArgs e) {
          this.toolBot.SetAutoUpgrade(chbAutoFirewall.Checked);
+      }
+
+      private void chbHackingMessage_CheckedChanged(object sender, EventArgs e) {
+         txtHackingMessage.Enabled = chbHackingMessage.Checked;
+         this.toolBot.SetHackingMessageActive(chbHackingMessage.Checked);
+      }
+
+      private void txtHackingMessage_TextChanged(object sender, EventArgs e) {
+         if (chbHackingMessage.Checked)
+            this.toolBot.SetHackingMessage(txtHackingMessage.Text);
       }
    }
 }

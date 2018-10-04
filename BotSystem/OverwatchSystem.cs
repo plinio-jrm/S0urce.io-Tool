@@ -9,18 +9,21 @@ namespace S0urce.io_tool.BotSystem {
       private const int DEFAULT_DELAY = 100;
       private const int HACKING_DELAY_CHANGE = 50;
       private const int HACKING_DELAY_MIN = 600;
+      private const int MYCOMPUTER_DELAY = 0;
       #endregion
       #region events
       public event OverwatchMethodCall OnMainOverwatch;
       public event OverwatchMethodCall OnHacking;
       public event OverwatchMethodCall OnDataMiner;
       public event OverwatchMethodCall OnMyComputer;
+      public event OverwatchMethodCall OnBlackMarket;
       #endregion
       #region variables
       private Thread mainThread;
       private Thread hackingThread;
       private Thread dataMinerThread;
       private Thread mycomputerThread;
+      private Thread blackMarketThread;
 
       private int hackingDelayTime;
       #endregion
@@ -35,11 +38,13 @@ namespace S0urce.io_tool.BotSystem {
          this.hackingThread = new Thread(new ThreadStart(this.HackingThreadMethod));
          this.dataMinerThread = new Thread(new ThreadStart(this.DataMinerMethod));
          this.mycomputerThread = new Thread(new ThreadStart(this.MyComputerMethod));
+         this.blackMarketThread = new Thread(new ThreadStart(this.BlackMarketMethod));
 
          this.mainThread.Start();
          this.hackingThread.Start();
          this.dataMinerThread.Start();
          this.mycomputerThread.Start();
+         this.blackMarketThread.Start();
       }
 
       public void Stop() {
@@ -47,6 +52,7 @@ namespace S0urce.io_tool.BotSystem {
          this.hackingThread.Abort();
          this.dataMinerThread.Abort();
          this.mycomputerThread.Abort();
+         this.blackMarketThread.Abort();
       }
 
       public void IncreasyDelay() {
@@ -87,6 +93,14 @@ namespace S0urce.io_tool.BotSystem {
          while (true) {
             if (this.OnMyComputer != null)
                this.OnMyComputer();
+            Thread.Sleep(MYCOMPUTER_DELAY);
+         }
+      }
+
+      private void BlackMarketMethod() {
+         while (true) {
+            if (this.OnBlackMarket != null)
+               this.OnBlackMarket();
             Thread.Sleep(DEFAULT_DELAY);
          }
       }
