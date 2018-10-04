@@ -1,4 +1,4 @@
-# S0urce.io Tool v0.4 beta
+# S0urce.io Tool v0.5 beta
 > I posted the entire code i made using Visual Studio 2017 here. The project is a **Windows Application Form**. You can create and use the same source to compile your own tool if you don't trust the tool on [Releases section](https://github.com/plinio-jrm/S0urce.io-Tool/releases "Releases").
 
 > Follow the development process to know whats comes on the next version. Access the [MeisterTask page](https://www.meistertask.com/app/project/xXlUDrFS/s0urce-io-tool "Development process").
@@ -23,12 +23,17 @@ It is a Windows application with a browser component in it. the application uses
 Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool Wiki") and learn how it works.
 
 ### Image
-![Preview](https://github.com/plinio-jrm/S0urce.io-Tool/blob/master/Images/Version%200.4-beta.JPG)
+![Preview](https://github.com/plinio-jrm/S0urce.io-Tool/blob/master/Images/Version%200.5-beta.JPG)
 
 ### Download Releases
-**New** [Beta version 0.4](https://github.com/plinio-jrm/S0urce.io-Tool/releases/tag/v0.4-beta "Download Beta version 0.4")
+**New** [Beta version 0.5](https://github.com/plinio-jrm/S0urce.io-Tool/releases/tag/v0.5-beta "Download Beta version 0.5")
 
-### What's new in version 0.4
+### What's new in version 0.5
+* Automatic Black Market
+* Auto save after hacking someone
+* Auto send hacking message
+
+### What's in last version
 * The **My Computer** window is now automatic if you want it. It will auto regen when **Charge** have 5 less than **Max Charge**. Also it will upgrade automatically until you fully upgraded. First the **difficulty**, then the **Max Charge** and the last **Regen**. Regen is the last, because of it's inefficiency. It occur every 2 minuts.
 * Title version bug fixed
 * Now the firewall port information is on the sidebar.
@@ -37,4 +42,4 @@ Read it [here](https://github.com/plinio-jrm/S0urce.io-Tool/wiki "S0urce.io Tool
 * Now the Systems will only execute after login page.
 
 ### Issues
-Whether you have a problem, let me know! 
+Whether you have a problem, post it and let me know! 
